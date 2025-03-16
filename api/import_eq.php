@@ -3,13 +3,15 @@ include 'dbconnection.php';
 $con = dbconnection();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $HN_id = $_POST['HN_id'];
     $eqtype = $_POST['eq_type'];
-    $userid = $_POST['user_id'];
+    $username = $_POST['user_name'];
+    $eqname = $_POST['eq_name'];
     $eqmodel = $_POST['eq_model'];
     $eqbrand = $_POST['eq_brand'];
-    $eqserial = $_POST['eq_serial'];
     $eqstatus = $_POST['eq_status'];
     $eqprice = $_POST['eq_price'];
+    $eqbuydate = $_POST['eq_buydate'];
     $eqdate = $_POST['eq_date'];
     $eqwarran = $_POST['eq_warran'];
     $name = $_POST['name'];
@@ -60,8 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $query = "INSERT INTO `eq_table`(`eq_type`, `user_id`, `eq_model`, `eq_brand`, `eq_serial`, `eq_status`, `eq_price`, `eq_date`, `eq_warran`, `eq_img`) 
-              VALUES ('$eqtype','$userid','$eqmodel','$eqbrand','$eqserial','$eqstatus', '$eqprice','$eqdate','$eqwarran','$path')";
+    $query = "INSERT INTO `equipment_tb`(`HN_id`, `eq_type`, `user_name`, `eq_name`, `eq_brand`, `eq_model`, `eq_status`, `eq_price`, `eq_buydate`, `eq_date`, `eq_warran`, `eq_img`) 
+              VALUES ('$HN_id', '$eqtype', '$username', '$eqname', '$eqbrand', '$eqmodel', '$eqstatus', '$eqprice', '$eqbuydate', '$eqdate', '$eqwarran', '$path')";
+
 
     $exe = mysqli_query($con, $query);
 

@@ -96,11 +96,14 @@ CREATE TABLE
         status_id INT AUTO_INCREMENT PRIMARY KEY,
         status VARCHAR(255)
     ) ENGINE = INNODB
-INSERT INTO
-    `status_tb` (`status_id`, `status`)
-VALUES
-    (NULL, 'Active'),
-    (NULL, 'Inactive')
+
+INSERT INTO `status_tb` (`status_id`, `status`) VALUES
+('1', 'กำลังใช้งาน'),
+('2', 'สำรอง'),
+('3', 'ระหว่างซ่อม'),
+('5', 'ชำรุด'),
+('6', 'รอแทงจำหน่าย');
+
 CREATE TABLE
     eq_type (
         eqt_id INT AUTO_INCREMENT PRIMARY KEY,

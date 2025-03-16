@@ -1,11 +1,10 @@
 <?php
 header('Content-Type: application/json');
 
-include 'dbconnection.php';
+include 'dbconnection.php'; // ตรวจสอบให้แน่ใจว่าไฟล์นี้มีฟังก์ชัน dbconnection() ที่ถูกต้อง
 $con = dbconnection();
 
-// $query = "SELECT DATE_FORMAT(date, '%Y-%m') AS month, COUNT(checkout_id) AS checkout_count FROM checkout GROUP BY month ORDER BY month ASC";
-$query = "SELECT DATE_FORMAT(date, '%Y-%m') AS month, COUNT(checkout_id) AS checkout_count FROM checkout WHERE status = 'approved' GROUP BY month ORDER BY month ASC";
+$query = "SELECT DATE_FORMAT(request_date, '%Y-%m') AS month, COUNT(request_id) AS order_count FROM approval_requests WHERE status = 'อนุมัติคำขอ' GROUP BY month ORDER BY month ASC";
 $exe = mysqli_query($con, $query);
 $arr = [];
 
@@ -18,8 +17,9 @@ while ($row = mysqli_fetch_assoc($exe)) {
 
     $arr[] = [
         'month' => $monthName,
-        'checkout_count' => $row['checkout_count']
+        'order_count' => $row['order_count']
     ];
 }
+
 print(json_encode($arr));
 ?>
